@@ -7,8 +7,11 @@ This example is written using Minimal API and targets .NET 6.
 To get this working in your project:
 
 1. Install `SystemTextJsonPatch` library.
-2. Add the Converter to System.Text.Json in `Program.cs` via:
     ```
+    dotnet add package SystemTextJsonPatch
+    ```
+2. Add the Converter to System.Text.Json in `Program.cs` via:
+    ```cs
     builder.Services.Configure<JsonOptions>(o =>
         o.SerializerOptions.Converters.Add(new JsonPatchDocumentConverterFactory()));
     ```
