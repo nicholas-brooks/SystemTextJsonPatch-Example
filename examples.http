@@ -1,0 +1,76 @@
+###
+# HTTP examples of using PATCH
+#
+# You can use REST Client VSCode Extension to run the examples below.
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+#
+###
+
+## Change this to where your app is running from
+
+@endpoint = https://localhost:7201
+
+###
+# Get Profile
+GET {{endpoint}}/profile
+
+
+###
+# Valid PATCH call
+PATCH {{endpoint}}/profile
+Content-Type: application/json
+
+[
+  {
+    "op": "replace",
+    "path": "/firstName",
+    "value": "Billy"
+  },
+  {
+    "op": "replace",
+    "path": "/age",
+    "value": 34
+  }
+]
+
+
+###
+# PATCH call that fails validation
+PATCH {{endpoint}}/profile
+Content-Type: application/json
+
+[
+  {
+    "op": "copy",
+    "from": "/lastName",
+    "path": "/firstName"
+  },
+  {
+    "op": "replace",
+    "path": "/firstName",
+    "value": "Billy"
+  },
+  {
+    "op": "remove",
+    "path": "/age"
+  }
+]
+
+
+###
+# Valid PATCH call to obj version
+PATCH {{endpoint}}/obj
+Content-Type: application/json
+
+[
+  {
+    "op": "replace",
+    "path": "/firstName",
+    "value": "Billy"
+  },
+  {
+    "op": "replace",
+    "path": "/age",
+    "value": 34
+  }
+]
